@@ -1,4 +1,4 @@
-﻿namespace Italcom.AgentOrchestrator.IntegrationTests;
+namespace Italcom.AgentOrchestrator.IntegrationTests;
 
 public class UnitTest1
 {
