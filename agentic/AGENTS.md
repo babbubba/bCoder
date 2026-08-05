@@ -2,17 +2,19 @@
 
 ## Gerarchia delle fonti
 
-Prima di lavorare, leggi nell'ordine:
+Prima di lavorare, leggi esclusivamente:
 
-1. questo file;
+1. `AGENTS.md` nella root;
 2. il task assegnato;
-3. [PROJECT.md](PROJECT.md);
-4. [ARCHITECTURE.md](architecture/ARCHITECTURE.md);
-5. [SECURITY.md](governance/SECURITY.md);
-6. [QUALITY_GATES.md](governance/QUALITY_GATES.md);
-7. gli ADR citati dal task.
+3. i file e le sezioni indicate nel `Context package` del task.
 
-Il task prevale sulle indicazioni generiche solo se non viola sicurezza, privacy o decisioni architetturali approvate.
+Non leggere automaticamente tutta la documentazione generale.
+
+Non seguire ricorsivamente collegamenti Markdown, directory ADR o riferimenti
+ad altri documenti, salvo istruzione esplicita nel task.
+
+Quando una policy completa non è necessaria, il riepilogo contenuto nel task
+è considerato sufficiente.
 
 ## Un task per sessione
 

@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Italcom.AgentOrchestrator.AgentRuntime/Italcom.AgentOrchestrator.AgentRuntime.csproj" />
+    <Project Path="src/Italcom.AgentOrchestrator.Api/Italcom.AgentOrchestrator.Api.csproj" />
+    <Project Path="src/Italcom.AgentOrchestrator.Application/Italcom.AgentOrchestrator.Application.csproj" />
+    <Project Path="src/Italcom.AgentOrchestrator.Cli/Italcom.AgentOrchestrator.Cli.csproj" />
+    <Project Path="src/Italcom.AgentOrchestrator.Domain/Italcom.AgentOrchestrator.Domain.csproj" />
+    <Project Path="src/Italcom.AgentOrchestrator.Infrastructure/Italcom.AgentOrchestrator.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Italcom.AgentOrchestrator.ArchitectureTests/Italcom.AgentOrchestrator.ArchitectureTests.csproj" />
+    <Project Path="tests/Italcom.AgentOrchestrator.IntegrationTests/Italcom.AgentOrchestrator.IntegrationTests.csproj" />
+    <Project Path="tests/Italcom.AgentOrchestrator.UnitTests/Italcom.AgentOrchestrator.UnitTests.csproj" />
+  </Folder>
+</Solution>
