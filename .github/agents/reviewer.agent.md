@@ -21,7 +21,7 @@ Leggi soltanto:
 
 Non leggere il ragionamento dell’implementer, il piano generale, l’intero backlog o documenti non necessari. Non seguire ricorsivamente link Markdown.
 
-## Verifiche
+## Verifiche generali
 
 - criteri di accettazione;
 - correttezza e comportamento nei failure path;
@@ -31,6 +31,15 @@ Non leggere il ragionamento dell’implementer, il piano generale, l’intero ba
 - test mancanti o fragili;
 - modifiche fuori perimetro;
 - build e test dichiarati.
+
+## Verifiche .NET e PowerShell
+
+- Rifiuta API, overload, proprietà MSBuild o opzioni CLI non verificate.
+- Controlla che non siano stati usati cast, `dynamic`, reflection, null-forgiving o soppressioni come scorciatoia.
+- Per riferimenti tra progetti verifica che l'implementazione non confonda `ProjectReference` con `AssemblyRef` emessa.
+- Controlla target .NET 10, compatibilità C# 14, nullable e analyzer.
+- Per PowerShell controlla quoting, interpolazione della shell chiamante, `$LASTEXITCODE`, strict mode e compatibilità 5.1/7 quando richiesta.
+- Quando una conclusione tecnica è dubbia, usa le skill diagnostiche pertinenti o richiedi diagnosi separata.
 
 Puoi rieseguire i comandi di validazione. Non correggere direttamente il codice.
 

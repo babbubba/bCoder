@@ -6,6 +6,8 @@ tools: ['agent', 'read', 'search', 'edit', 'execute']
 agents:
   - Task Implementer
   - Task Reviewer
+  - DotNet Diagnostician
+  - PowerShell Diagnostician
 argument-hint: Avvia o riprendi l'esecuzione autonoma del progetto
 ---
 
@@ -65,14 +67,20 @@ Per task con budget 64K, resta comunque entro la lista chiusa del context packag
 
 Salva il riepilogo in `agentic/runner/runs/TASK-XXX/implementation-attempt-N.md`.
 
-Se il subagent restituisce `FAILED` o `BLOCKED`, registra il motivo. Non passare automaticamente al task successivo.
+Se il subagent restituisce `DIAGNOSIS_REQUIRED: DOTNET`, invoca `DotNet Diagnostician` passando task, context package, errore, comandi già eseguiti e file pertinenti. Salva il risultato in `diagnosis-dotnet-attempt-N.md`, poi richiama l'implementer con la sola root cause e le evidenze.
+
+Se restituisce `DIAGNOSIS_REQUIRED: POWERSHELL`, applica lo stesso flusso con `PowerShell Diagnostician` e salva `diagnosis-powershell-attempt-N.md`.
+
+Se il subagent restituisce `FAILED` o `BLOCKED` senza una diagnosi richiesta, registra il motivo. Non passare automaticamente al task successivo.
 
 ## 3. Verifica preliminare
 
 - Verifica che esista un diff rispetto alla baseline, salvo task esclusivamente documentale.
 - Esegui i comandi obbligatori indicati nel task.
 - Salva un riepilogo degli output, non l’intero log, in `validation-attempt-N.md`.
-- Se la validazione fallisce, richiama l’implementer con i soli errori rilevanti.
+- Se la validazione fallisce per C#, .NET SDK, MSBuild, restore, analyzer, reference o metadata, invoca prima `DotNet Diagnostician`; passa poi all'implementer soltanto root cause, evidenze e correzione minima.
+- Se fallisce un comando o script PowerShell, invoca prima `PowerShell Diagnostician`.
+- Per failure banali e già deterministiche, richiama l'implementer con i soli errori rilevanti.
 
 ## 4. Review indipendente
 

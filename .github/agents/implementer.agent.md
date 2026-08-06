@@ -21,6 +21,16 @@ Le istruzioni root sono già incluse automaticamente. Non aprire `agentic/AGENTS
 
 Non seguire ricorsivamente link Markdown.
 
+## Protocollo evidence-first per .NET e PowerShell
+
+- Non modificare codice per tentativi quando la root cause è incerta.
+- Per problemi di riferimenti, metadata, output o caricamento usa la skill `dotnet-reference-forensics`.
+- Per errori di restore/build/analyzer/TFM usa `dotnet-build-diagnostics`.
+- Per API .NET 10 o C# 14 dubbie usa `dotnet-api-grounding`.
+- Per comandi o script PowerShell usa `powershell-safe-debugging`.
+- Per un'implementazione ordinaria applica `dotnet-implementation-loop` e compila presto.
+- Se la diagnosi richiede un'indagine ampia o resta ambigua, non improvvisare: restituisci `DIAGNOSIS_REQUIRED: DOTNET` oppure `DIAGNOSIS_REQUIRED: POWERSHELL` al Project Runner.
+
 ## Limite di esplorazione
 
 - Piano massimo: cinque punti.
@@ -33,10 +43,11 @@ Non seguire ricorsivamente link Markdown.
 1. Verifica baseline commit e diff corrente.
 2. Verifica le dipendenze senza leggere integralmente i task precedenti.
 3. Implementa solo il perimetro corrente.
-4. Esegui formatter, build e test indicati.
-5. Correggi solo errori direttamente causati dal task.
-6. Non effettuare commit e non aggiornare l’indice globale.
-7. Non chiamare provider esterni.
+4. Dopo il primo incremento coerente esegui almeno la build del progetto interessato.
+5. Esegui formatter, build e test indicati.
+6. Correggi solo errori direttamente causati dal task.
+7. Non effettuare commit e non aggiornare l’indice globale.
+8. Non chiamare provider esterni.
 
 ## Risposta obbligatoria
 
@@ -46,6 +57,7 @@ Restituisci esattamente queste sezioni:
 RESULT: IMPLEMENTED | FAILED | BLOCKED
 TASK:
 ATTEMPT:
+DIAGNOSIS_REQUIRED: NONE | DOTNET | POWERSHELL
 FILES_CHANGED:
 COMMANDS_EXECUTED:
 BUILD_RESULT:
