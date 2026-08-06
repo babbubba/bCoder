@@ -1,6 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" Version="11.0.0-preview.1.26104.118" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\Italcom.AgentOrchestrator.Domain\Italcom.AgentOrchestrator.Domain.csproj" />
     <ProjectReference Include="..\..\src\Italcom.AgentOrchestrator.Application\Italcom.AgentOrchestrator.Application.csproj" />
     <ProjectReference Include="..\..\src\Italcom.AgentOrchestrator.Infrastructure\Italcom.AgentOrchestrator.Infrastructure.csproj" />

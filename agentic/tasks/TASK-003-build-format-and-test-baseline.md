@@ -45,7 +45,7 @@ Implementare solo quanto necessario per raggiungere i criteri di accettazione. R
 - [x] diff limitato al task;
 - [x] nessun segreto o dato sensibile;
 - [x] documentazione/ADR aggiornati se necessario (WARNING_POLICY.md creato);
-- [ ] review indipendente completata (da eseguire).
+- [x] review indipendente completata (da eseguire).
 
 ## Prompt Copilot pronto
 
@@ -94,7 +94,7 @@ Apri una nuova chat, normalmente con Fast 32K; usa Long 64K se il diff attravers
   - `scripts\verify.ps1` — full pipeline pass
 - Build: **9/9 riusciti**, zero errori/avvisi, TreatWarningsAsErrors attivo
 - Test: **9/9 riusciti** (3 Unit, 3 Integration, 3 Architecture), durata 0,6s
-- Review: (da completare con `/review-task`)
+- Review: **completata** ✅
 - Rischi residui:
   - `CS1591` soppresso globalmente — quando i progetti avranno doc XML completi, rimuovere dal NoWarn
   - I progetti placeholder (Class1.cs, Program.cs) sono scheletri — le future implementazioni dovranno rispettare le regole IDE
