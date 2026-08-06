@@ -1,3 +1,4 @@
-namespace Italcom.AgentOrchestrator.Infrastructure;
-
-public sealed class AssemblyMarker { }
+namespace Italcom.AgentOrchestrator.Infrastructure
+{
+    public sealed class AssemblyMarker { }
+}

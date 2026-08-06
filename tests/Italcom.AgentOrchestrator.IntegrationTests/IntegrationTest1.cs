@@ -1,10 +1,11 @@
-namespace Italcom.AgentOrchestrator.IntegrationTests;
-
-public class IntegrationTest1
+namespace Italcom.AgentOrchestrator.IntegrationTests
 {
-    [Fact]
-    public void Test1()
+    public class IntegrationTest1
     {
+        [Fact]
+        public void Test1()
+        {
 
+        }
     }
 }

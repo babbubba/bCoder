@@ -1,6 +1,7 @@
-namespace Italcom.AgentOrchestrator.Domain;
-
-public abstract class DomainService
+namespace Italcom.AgentOrchestrator.Domain
 {
-    public abstract string GetName();
+    public abstract class DomainService
+    {
+        public abstract string GetName();
+    }
 }
