@@ -4,7 +4,7 @@ Stato iniziale: TASK-001 `Ready`; tutti gli altri `Planned`. Aggiornare questa t
 
 | ID | Fase | Task | Contesto | Dipendenze | Stato |
 |---|---:|---|---:|---|---|
-| [001](TASK-001-repository-bootstrap.md) | 0 | Repository bootstrap | **32K** | — | Ready |
+| [001](TASK-001-repository-bootstrap.md) | 0 | Repository bootstrap | **32K** | — | Done |
 | [002](TASK-002-net-solution-skeleton.md) | 0 | .NET solution skeleton | **32K** | 001 | Done |
 | [003](TASK-003-build-format-and-test-baseline.md) | 0 | Build, format and test baseline | **32K** | 002 | Done |
 | [004](TASK-004-configuration-and-secrets.md) | 0 | Configuration and secrets | **32K** | 002, 003 | Done |

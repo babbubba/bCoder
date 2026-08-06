@@ -2,13 +2,13 @@
 
 | Campo | Valore |
 |---|---|
-| Project status | Ready |
-| Current task | Auto-detect |
+| Project status | Running |
+| Current task | Auto-detect (next: TASK-005) |
 | Current phase | Idle |
 | Attempt | 0 |
-| Baseline commit | Auto-detect |
-| Last approved commit | Auto-detect |
-| Last update | Not started |
+| Baseline commit | 444bb8c (HEAD -> main) |
+| Last approved commit | 0be819d (TASK-001), 5a93d69 (TASK-002), 97c2c96 (TASK-003), d6f996c (TASK-004), 4e9a2d9 (TASK-005) |
+| Last update | 2026-08-06 |
 | Block reason | None |
 
 ## Regole di aggiornamento
