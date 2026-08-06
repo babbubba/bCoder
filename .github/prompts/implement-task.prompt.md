@@ -1,25 +1,14 @@
 ---
 name: implement-task
-description: Implementa un singolo task del backlog.
-agent: Implementer
+description: Implementa manualmente un singolo task usando il context package ristretto.
+agent: Task Implementer
 argument-hint: taskPath=agentic/tasks/TASK-xxx-name.md
 ---
 
-Implementa esclusivamente `${input:taskPath}`.
+Implementa esclusivamente `${input:taskPath:agentic/tasks/TASK-001-repository-bootstrap.md}`.
 
-Leggi soltanto:
+Deriva l’ID `TASK-XXX` dal nome del file e usa `agentic/runner/context/TASK-XXX.md` come lista chiusa del contesto autorizzato.
 
-1. `AGENTS.md` nella root;
-2. il task assegnato;
-3. i file e le sezioni elencati nel campo `Context package` del task.
+Non applicare le sezioni legacy del task che chiedono di leggere genericamente progetto, architettura, sicurezza, quality gate o “documenti citati”.
 
-Non leggere automaticamente `PROJECT.md`, `ARCHITECTURE.md`, `SECURITY.md`,
-`QUALITY_GATES.md`, ADR o altri documenti se non sono inclusi nel
-`Context package`.
-
-Non seguire ricorsivamente link e riferimenti documentali.
-
-Dopo un piano di massimo 5 punti, inizia immediatamente l'implementazione.
-
-Esegui solamente i comandi e i test richiesti dal task.
-Aggiorna l'esito del task al termine.
+Non seguire ricorsivamente link Markdown. Dopo un piano di massimo cinque punti, inizia immediatamente l’implementazione. Esegui i comandi di validazione del task e restituisci l’esito strutturato previsto dal Task Implementer.

@@ -1,36 +1,36 @@
-# Guida alla scelta del contesto
+# Guida al contesto
 
-## Fast 32K
+## Modalità manuale
 
-Usare per:
+- **32K**: fix circoscritti, singoli adapter, test, endpoint o modifiche entro pochi file.
+- **64K**: bootstrap, dominio, routing, sicurezza, workflow e modifiche trasversali.
 
-- singolo adapter/client;
-- uno o due progetti della solution;
-- unit test;
-- API endpoint;
-- persistence circoscritta;
-- documentazione;
-- bug con stack trace chiaro.
+## Modalità autonoma
 
-Vantaggi: prefill minore, iterazioni più rapide, compattazione prima che la conversazione diventi rumorosa.
+Il Project Runner viene avviato una sola volta con **Long 64K**. I subagent ereditano il modello.
 
-## Long 64K
+Il budget indicato in `agentic/runner/context/TASK-XXX.md` controlla quanto contesto può essere caricato:
 
-Usare per:
+### Budget operativo 32K
 
-- dominio e architettura;
-- routing e privacy;
-- workflow con più componenti;
-- Agent Framework;
-- worktree/process security;
-- review trasversale;
-- scenari end-to-end.
+- task e context package;
+- massimo due documenti aggiuntivi;
+- massimo dieci file applicativi prima della prima modifica;
+- niente esplorazione architetturale;
+- output di terminale sintetizzato.
 
-## Regole
+### Budget operativo 64K
 
-- il contesto indicato nel task è il default;
-- passare a 64K solo se il task richiede davvero più moduli;
-- non usare 64K come predefinito per implementazioni semplici;
-- nuova chat per ogni task e review;
-- allegare solo file pertinenti;
-- salvare output lunghi su file invece di incollarli integralmente.
+- task e context package;
+- massimo tre documenti elencati;
+- file applicativi direttamente coinvolti;
+- nessuna lettura ricorsiva o dell’intero piano.
+
+## Regole anti-compattazione
+
+- non leggere `ALL-IN-ONE-PLAN.md` durante esecuzione;
+- non leggere tutti gli ADR;
+- non caricare task precedenti per ricostruire lo stato: usare Git e i report;
+- salvare log lunghi sotto `agentic/runner/runs/`;
+- il parent riceve solo riepiloghi dei subagent;
+- aprire un file una seconda volta solo se è cambiato o serve una porzione precisa.

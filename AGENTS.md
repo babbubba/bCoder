@@ -1,13 +1,16 @@
 # Istruzioni agentiche del repository
 
-Le direttive complete sono in [`agentic/AGENTS.md`](agentic/AGENTS.md).
+Queste regole sono sempre attive e devono restare brevi.
 
-Prima di qualsiasi modifica:
+1. Lavora su un solo task alla volta.
+2. Non leggere ricorsivamente link Markdown, intere directory, tutti gli ADR o il piano consolidato.
+3. Per ogni `TASK-XXX`, il contesto autorizzato è definito da `agentic/runner/context/TASK-XXX.md`.
+4. Il context package prevale sulle sezioni legacy “Prima di iniziare” e “Prompt Copilot pronto” presenti nei task.
+5. In modalità autonoma usa una sessione principale Long 64K; i subagent ereditano il modello e rispettano il budget 32K/64K indicato nel context package.
+6. Non eseguire `git push`, merge, rebase, reset distruttivi, prune, comandi privilegiati o operazioni fuori dalla worktree.
+7. Nessun codice, segreto o dato interno deve essere inviato a provider esterni senza una policy già implementata e un’approvazione esplicita.
+8. Un task è completato solo dopo build, test pertinenti e review indipendente.
+9. Se mancano credenziali, requisiti o decisioni non deducibili, registra `Blocked` e fermati; non inventare.
 
-1. leggi `agentic/AGENTS.md`;
-2. leggi il task assegnato in `agentic/tasks/`;
-3. usa il profilo 32K o 64K indicato dal task;
-4. non modificare file estranei al task;
-5. applica i quality gate e le policy di sicurezza descritte sotto `agentic/governance/`.
-
-Questo file rimane intenzionalmente in root per permettere agli strumenti agentici di individuare automaticamente le istruzioni del repository.
+Workflow autonomo: `agentic/runner/README.md`.
+Regole estese, da leggere solo quando richieste dal context package: `agentic/AGENTS.md`.

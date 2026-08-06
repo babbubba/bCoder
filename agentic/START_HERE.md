@@ -1,53 +1,33 @@
 # Avvio del progetto
 
-## 1. Prerequisiti
+## Scelta del workflow
 
-- Git.
-- .NET SDK 8 o successivo compatibile con la versione scelta di Microsoft Agent Framework.
-- Docker e Docker Compose per PostgreSQL e test di integrazione.
-- VS Code con GitHub Copilot Chat oppure altro coding agent con tool calling.
-- DS4 raggiungibile tramite endpoint OpenAI-compatible.
-- Chiave OpenRouter solo quando si implementano i task relativi; non inserirla mai nel repository.
+### Esecuzione autonoma unattended
 
-## 2. Inizializzazione
+1. Leggi `agentic/runner/PATCH_INSTALL.md` e `agentic/runner/SAFETY.md`.
+2. Lavora in una branch/worktree dedicata e pulita.
+3. Configura VS Code seguendo `agentic/runner/VSCODE_SETUP.md`.
+4. Seleziona `Project Runner` e DeepSeek Long 64K.
+5. Seleziona Autopilot.
+6. Esegui `/run-project`.
+7. Dopo una chiusura o un crash, esegui `/resume-project`.
 
-Linux/macOS:
+### Esecuzione manuale di un task
 
-```bash
-chmod +x scripts/init-repo.sh
-./scripts/init-repo.sh
-```
+1. Esegui `/run-next-task`.
+2. Seleziona il modello indicato oppure Long 64K.
+3. Esegui `/implement-task taskPath=...`.
+4. Esegui `/review-task taskPath=...` in una sessione separata.
 
-PowerShell:
+## Regola di contesto
 
-```powershell
-Set-ExecutionPolicy -Scope Process Bypass
-./scripts/init-repo.ps1
-```
+Il file `agentic/runner/context/TASK-XXX.md` è la fonte autorevole del contesto. Le vecchie indicazioni generiche contenute nei task non devono causare letture ricorsive.
 
-## 3. Primo utilizzo con Copilot
+## Definition of Done minima
 
-1. Seleziona **DeepSeek V4 Flash Q2 - Fast 32K**.
-2. Apri una nuova chat.
-3. Esegui `/implement-task` e indica `agentic/tasks/TASK-001-repository-bootstrap.md`.
-4. Non eseguire più task nella stessa chat.
-5. Al termine usa `/review-task` in una nuova chat.
-
-## 4. Regola 32K/64K
-
-- **32K**: implementazione circoscritta, test, client HTTP, CRUD, documentazione.
-- **64K**: architettura, dominio, routing, sicurezza, workflow multi-agente, revisione trasversale.
-
-La scelta è già riportata nel frontespizio di ogni task.
-
-## 5. Definition of Done minima
-
-Un task non è concluso finché non sono disponibili:
-
-- implementazione completa;
-- build riuscita;
-- test previsti riusciti;
-- nessun segreto nei file o nei log;
-- `git diff` revisionato;
-- aggiornamento della sezione “Esito esecuzione” nel task;
-- eventuale ADR creato o aggiornato.
+- implementazione nel perimetro;
+- formatter, build e test previsti;
+- review indipendente approvata;
+- task e indice aggiornati;
+- commit locale;
+- report sotto `agentic/runner/runs/TASK-XXX/`.

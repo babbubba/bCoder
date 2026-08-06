@@ -1,52 +1,55 @@
-namespace Italcom.AgentOrchestrator.Domain;
+using System.Diagnostics.CodeAnalysis;
 
-public sealed record DomainError(string Message, DomainErrorCode Code);
-
-public enum DomainErrorCode
+namespace Italcom.AgentOrchestrator.Domain
 {
-    InvalidTransition,
-    InvalidState,
-    ValidationError,
-    NotFound,
-    Conflict,
-    BudgetExceeded,
-    Unauthorized,
-    Timeout,
-    Deprecated
-}
+    public sealed record DomainError(string Message, DomainErrorCode Code);
 
-public sealed record DomainResult<T>
-{
-    private readonly T? _value;
-    private readonly DomainError? _error;
-
-    private DomainResult(T value)
+    public enum DomainErrorCode
     {
-        _value = value;
-        _error = null;
+        InvalidTransition,
+        InvalidState,
+        ValidationError,
+        NotFound,
+        Conflict,
+        BudgetExceeded,
+        Unauthorized,
+        Timeout,
+        Deprecated
     }
 
-    private DomainResult(DomainError error)
+    public sealed record DomainResult<T>
     {
-        _value = default;
-        _error = error;
+        private readonly DomainError? _error;
+
+        private DomainResult(T value)
+        {
+            Value = value;
+            _error = null;
+        }
+
+        private DomainResult(DomainError error)
+        {
+            Value = default;
+            _error = error;
+        }
+
+        public bool IsSuccess => _error is null;
+        public bool IsFailure => _error is not null;
+
+        [AllowNull]
+        public T Value =>
+            IsSuccess && field is not null
+                ? field
+                : throw new InvalidOperationException(
+                    $"Cannot access value of a failed result: {_error?.Message}");
+
+        public DomainError Error =>
+            IsFailure && _error is not null
+                ? _error
+                : throw new InvalidOperationException("Cannot access error of a successful result");
+
+        public static DomainResult<T> Success(T value) => new(value);
+        public static DomainResult<T> Failure(string message, DomainErrorCode code) =>
+            new(new DomainError(message, code));
     }
-
-    public bool IsSuccess => _error is null;
-    public bool IsFailure => _error is not null;
-
-    public T Value =>
-        IsSuccess && _value is not null
-            ? _value
-            : throw new InvalidOperationException(
-                $"Cannot access value of a failed result: {_error?.Message}");
-
-    public DomainError Error =>
-        IsFailure && _error is not null
-            ? _error
-            : throw new InvalidOperationException("Cannot access error of a successful result");
-
-    public static DomainResult<T> Success(T value) => new(value);
-    public static DomainResult<T> Failure(string message, DomainErrorCode code) =>
-        new(new DomainError(message, code));
 }
