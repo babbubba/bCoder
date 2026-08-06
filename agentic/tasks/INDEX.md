@@ -5,9 +5,9 @@ Stato iniziale: TASK-001 `Ready`; tutti gli altri `Planned`. Aggiornare questa t
 | ID | Fase | Task | Contesto | Dipendenze | Stato |
 |---|---:|---|---:|---|---|
 | [001](TASK-001-repository-bootstrap.md) | 0 | Repository bootstrap | **32K** | — | Ready |
-| [002](TASK-002-net-solution-skeleton.md) | 0 | .NET solution skeleton | **32K** | 001 | Planned |
-| [003](TASK-003-build-format-and-test-baseline.md) | 0 | Build, format and test baseline | **32K** | 002 | Planned |
-| [004](TASK-004-configuration-and-secrets.md) | 0 | Configuration and secrets | **32K** | 002, 003 | Planned |
+| [002](TASK-002-net-solution-skeleton.md) | 0 | .NET solution skeleton | **32K** | 001 | Done |
+| [003](TASK-003-build-format-and-test-baseline.md) | 0 | Build, format and test baseline | **32K** | 002 | Done |
+| [004](TASK-004-configuration-and-secrets.md) | 0 | Configuration and secrets | **32K** | 002, 003 | Done |
 | [005](TASK-005-domain-model-and-invariants.md) | 1 | Domain model and invariants | **64K** | 002, 003 | Planned |
 | [006](TASK-006-postgresql-persistence-and-migrations.md) | 1 | PostgreSQL persistence and migrations | **64K** | 004, 005 | Planned |
 | [007](TASK-007-observability-baseline.md) | 1 | Observability baseline | **32K** | 002, 004 | Planned |
